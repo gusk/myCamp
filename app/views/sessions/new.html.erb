@@ -1,0 +1,17 @@
+<div class="page-container">
+
+  <% if flash %>
+    <% flash.each do |key, value| %>
+      <%= value %>
+    <% end %>
+  <% end %>
+
+
+  <%= form_tag login_path do %>
+    <%= label_tag :email %>
+    <%= email_field_tag :email %>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+    <%= submit_tag 'Login' %>
+  <% end %>
+</div>

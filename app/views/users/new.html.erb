@@ -1,0 +1,24 @@
+<div class="page-container">
+
+  <% if @user.errors.present? %>
+    <div class="errors">
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <ul><%= message %></ul>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for @user do |f| %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= f.submit 'Register' %>
+  <% end %>
+</div>

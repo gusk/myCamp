@@ -1,0 +1,8 @@
+<div class="page-container">
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+    <%= flash[:success] %>
+  <% end %>
+
+  Welcome, <%= @user.first_name %>!
+</div>
