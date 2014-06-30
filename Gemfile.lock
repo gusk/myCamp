@@ -152,7 +152,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
-  pg
+  pg (~> 0.17.1)
   rails (= 4.1.1)
   rails_12factor (~> 0.0.2)
   rspec-rails (~> 3.0.1)
