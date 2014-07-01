@@ -1,5 +1,7 @@
-<%= @campsites.each do |campsite| %>
-  <ul>
-    <li><%= campsite %></li>
-  </ul>
-<% end %>
+<div class="page-container">
+  <% @campsites.each do |campsite| %>
+    <ul>
+      <li><%= campsite.name %></li>
+    </ul>
+  <% end %>
+</div>

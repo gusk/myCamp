@@ -13,6 +13,7 @@ class CampsitesController < ApplicationController
 
   def create
     @campsite = Campsite.new(allowed_parameters)
+
     if @campsite.save
       flash[:notice] = "Successfully added, #{@campsite.name} to your camp list."
       redirect_to campsites_path
@@ -20,7 +21,6 @@ class CampsitesController < ApplicationController
     else
       render :new
     end
-
   end
 
   def allowed_parameters

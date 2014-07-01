@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630035535) do
+ActiveRecord::Schema.define(version: 20140630215214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,10 @@ ActiveRecord::Schema.define(version: 20140630035535) do
     t.string "name"
     t.string "city"
     t.string "state"
+    t.string "user"
   end
+
+  add_index "campsites", ["user"], name: "index_campsites_on_user", using: :btree
 
   create_table "users", force: true do |t|
     t.string "first_name"
