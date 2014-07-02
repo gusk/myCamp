@@ -6,3 +6,21 @@
 .field_with_errors {
     display: inline;
 }
+
+.registration-container {
+    padding-left: 20px;
+}
+
+form .center_login_form {
+    padding-left: 3.5em
+}
+
+form .center_login_button {
+    padding-left: .925em;
+}
+
+.errors {
+    text-align: center;
+    color: red;
+    padding-bottom: 10px;
+}

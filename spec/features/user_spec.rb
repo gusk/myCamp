@@ -7,8 +7,8 @@ feature 'User' do
     visit '/'
     expect(page).to have_link 'Login'
     click_link 'Login'
-    fill_in "email", with: "#{user.email}"
-    fill_in "password", with: "#{user.password}"
+    fill_in "user[email]", with: "#{user.email}"
+    fill_in "user[password]", with: "#{user.password}"
     within 'form' do
       click_on 'Login'
     end
@@ -21,8 +21,8 @@ feature 'User' do
     visit '/'
     expect(page).to have_link 'Login'
     click_link 'Login'
-    fill_in "email", with: "bademail@email.com"
-    fill_in "password", with: "password"
+    fill_in "user[email]", with: "bademail@email.com"
+    fill_in "user[password]", with: "password"
     within 'form' do
       click_on 'Login'
     end
@@ -34,8 +34,8 @@ feature 'User' do
     visit '/'
     expect(page).to have_link 'Login'
     click_link 'Login'
-    fill_in "email", with: "#{user.email}"
-    fill_in "password", with: "#{user.password}"
+    fill_in "user[email]", with: "#{user.email}"
+    fill_in "user[password]", with: "#{user.password}"
     within 'form' do
       click_on 'Login'
     end
