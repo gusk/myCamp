@@ -1,5 +1,6 @@
 myCamp
 ======
+Staging: http://mycamp.herokuapp.com/
 
 ## About
 myCamp is a tool to save and pinpoint your favorite campgrounds.
