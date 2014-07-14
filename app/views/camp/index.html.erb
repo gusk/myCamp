@@ -4,5 +4,19 @@
       <%= value %>
     <% end %>
   <% end %>
-  Welcome to myCamp.
+  <div class="index-container">
+    Welcome to myCamp. Click on the map to add a campsite.
+  </div>
+
+
+  <div id="panel">
+    <input onclick="clearMarkers();" type=button value="Hide Markers">
+    <input onclick="showMarkers();" type=button value="Show All Markers">
+    <input onclick="deleteMarkers();" type=button value="Delete Markers">
+  </div>
 </div>
+
+<div id="map-canvas"></div>
+<script type="text/javascript">
+  initialize();
+</script>
