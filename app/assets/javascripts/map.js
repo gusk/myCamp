@@ -26,26 +26,35 @@ function initialize() {
 }
 
 function addMarker(location) {
-  var contentString = '<div id="content">' +
-    '<div id="siteNotice">' +
-    '</div>' +
-    '<h1 id="firstHeading" class="firstHeading">Campsite</h1>' +
-    '<div id="bodyContent">' +
-    '<p><b>Campsite Name</b></p>' +
-    '</div>' +
-    '</div>';
 
-  var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
+  var contentString = $('<div class="marker-info-win">' +
+    '<div class="marker-inner-win"><span class="info-content">' +
+    '<h1 class="marker-heading">New Campsite</h1>' +
+    'Campsite Description' +
+    '</span>' +
+    '<br/><button name="remove-marker" class="remove-marker" title="Remove Marker">Remove Marker</button></div></div>');
+
+  var infowindow = new google.maps.InfoWindow();
+
+  infowindow.setContent(contentString[0]);
+
+
   var marker = new google.maps.Marker({
     position: location,
     map: map,
+    animation: google.maps.Animation.DROP,
     title: 'Campsite name'
   });
+
+
   markers.push(marker);
   google.maps.event.addListener(marker, 'click', function () {
     infowindow.open(map, marker);
+  });
+
+  var removeBtn = contentString.find('button.remove-marker')[0];
+  google.maps.event.addDomListener(removeBtn, "click", function (event) {
+    marker.setMap(null);
   });
 }
 
@@ -69,16 +78,4 @@ function deleteMarkers() {
 }
 
 
-function detectBrowser() {
-  var useragent = navigator.userAgent;
-  var mapdiv = document.getElementById("map-canvas");
-
-  if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
-    mapdiv.style.width = '100%';
-    mapdiv.style.height = '100%';
-  } else {
-    mapdiv.style.width = '100%';
-    mapdiv.style.height = '95%';
-  }
-}
 //google.maps.event.addDomListener(window, 'load', initialize);
