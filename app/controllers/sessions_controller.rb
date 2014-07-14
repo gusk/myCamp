@@ -4,14 +4,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:email])
+    user = User.find_by email: params[:user][:email]
 
-    if user.present? && user.authenticate(params[:password])
+    if user.present? && user.authenticate(params[:user][:password])
       session[:user_id] = user.id
       flash[:success] = 'Login Successful'
       redirect_to user_path(user.id)
     else
-      flash.now[:error] = "#{params[:email]} is not a registered email. Please register."
+      @user = User.new
+      flash.now[:error] = "Incorrect password or #{params[:user][:email]} is not a registered email. Please register."
       render 'new'
     end
   end
