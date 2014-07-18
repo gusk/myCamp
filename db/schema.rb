@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630215214) do
+ActiveRecord::Schema.define(version: 20140718203331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20140630215214) do
   end
 
   add_index "campsites", ["user"], name: "index_campsites_on_user", using: :btree
+
+  create_table "sites", force: true do |t|
+    t.string "name"
+    t.string "latlong"
+    t.string "description"
+    t.string "site_type"
+  end
 
   create_table "users", force: true do |t|
     t.string "first_name"

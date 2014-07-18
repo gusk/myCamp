@@ -12,4 +12,7 @@ Rails.application.routes.draw do
 
   get '/about' => 'camp#about', as: 'about'
 
+  namespace :api do
+    resources :sites
+  end
 end
