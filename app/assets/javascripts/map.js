@@ -129,7 +129,7 @@ function initializeMap() {
       var latLng = site.latlong.split(",");
       var myLatlng = new google.maps.LatLng(parseFloat(latLng[0]), parseFloat(latLng[1]));
 //      var myLatlng = new google.maps.LatLng(site.lat), site.lng));
-      create_marker(myLatlng, site.title, site.description);
+      create_marker(myLatlng, site.name, site.description);
     });
   });
 }
