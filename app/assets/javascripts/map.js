@@ -133,24 +133,3 @@ function initializeMap() {
     });
   });
 }
-
-
-
-function setAllMap(map) {
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(map);
-  }
-}
-
-function clearMarkers() {
-  setAllMap(null);
-}
-
-function showMarkers() {
-  setAllMap(map);
-}
-
-function deleteMarkers() {
-  clearMarkers();
-  markers = [];
-}
