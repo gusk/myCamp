@@ -58,6 +58,7 @@ CampsiteMap.prototype = {
     var contentString = $('<div class="marker-info-win">' +
       '<div class="marker-inner-win"><span class="info-content">' +
       '<h1 class="marker-heading">' + CampTitle + '</h1>' + CampDesc +
+      '<br>'+
       '</span><button name="remove-marker" class="remove-marker" title="Remove Marker">Remove Marker</button>' + '</div></div>');
 
     var infowindow = new google.maps.InfoWindow();
@@ -82,7 +83,6 @@ CampsiteMap.prototype = {
           alert("Please enter name and description.");
         } else {
           this.saveMarker(marker, mName, mDesc, mType, mReplace);
-          infowindow.open(this.map, marker);
         }
 
       }.bind(this));
