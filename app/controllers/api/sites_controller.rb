@@ -6,7 +6,7 @@ module Api
     end
 
     def create
-      @site = Site.new(name: params['name'], description: params['description'], site_type: params['site_type'], latlong: params['latlong'])
+      @site = Site.new(name: params['name'], description: params['description'], site_type: params['site_type'], lat: params['lat'], long: params['long'])
       if @site.save
         render json: @site
       else

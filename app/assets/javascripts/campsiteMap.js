@@ -40,10 +40,8 @@ CampsiteMap.prototype = {
   },
   initializeMap: function () {
     $.getJSON('/api/sites', function (data) {
-      $.each( data, function( index, site ) {
-
-        var latLng = site.latlong.split(",");
-        var myLatlng = new google.maps.LatLng(parseFloat(latLng[0]), parseFloat(latLng[1]));
+      $.each(data, function (index, site) {
+        var myLatlng = new google.maps.LatLng(site.lat, site.long);
         var marker = this.createMarker(myLatlng, site.name, site.description);
         marker.id = site.id;
       }.bind(this));
@@ -84,7 +82,9 @@ CampsiteMap.prototype = {
           alert("Please enter name and description.");
         } else {
           this.saveMarker(marker, mName, mDesc, mType, mReplace);
+          infowindow.open(this.map, marker);
         }
+
       }.bind(this));
     }
 
@@ -100,7 +100,9 @@ CampsiteMap.prototype = {
   },
   saveMarker: function saveMarker(marker, mName, mDesc, mType) {
     var mLatLong = marker.getPosition().toUrlValue();
-    var myData = {name: mName, latlong: mLatLong, description: mDesc, site_type: mType};
+    var mLat = mLatLong.split(",")[0];
+    var mLong = mLatLong.split(",")[1];
+    var myData = {name: mName, lat: mLat, long: mLong, description: mDesc, site_type: mType};
 
     $.ajax({
       type: "POST",
