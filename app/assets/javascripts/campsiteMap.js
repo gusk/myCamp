@@ -22,7 +22,7 @@ CampsiteMap.prototype = {
         '<label for="pType"><span>Type :</span> <select name="pType" class="save-type"><option value="dispersed">Dispersed</option><option value="camp ground">Camp Ground</option>' +
         '</select></label>' +
         '</form>' +
-        '</div></p><button name="save-marker" class="save-marker">Save Marker Details</button>';
+        '</div></p><button name="save-marker" class="save-marker">Save Campsite</button>';
 
       this.createMarker(event.latLng, 'New Campsite', EditForm, true, true, true);
     }.bind(this));
@@ -59,7 +59,7 @@ CampsiteMap.prototype = {
       '<div class="marker-inner-win"><span class="info-content">' +
       '<h1 class="marker-heading">' + CampTitle + '</h1>' + CampDesc +
       '<br>'+
-      '</span><button name="remove-marker" class="remove-marker" title="Remove Marker">Remove Marker</button>' + '</div></div>');
+      '</span><button name="remove-marker" class="remove-marker" title="Remove Marker">Remove Campsite</button>' + '</div></div>');
 
     var infowindow = new google.maps.InfoWindow();
 
@@ -99,10 +99,10 @@ CampsiteMap.prototype = {
     return marker;
   },
   saveMarker: function saveMarker(marker, mName, mDesc, mType) {
-    var mLatLong = marker.getPosition().toUrlValue();
-    var mLat = mLatLong.split(",")[0];
-    var mLong = mLatLong.split(",")[1];
-    var myData = {name: mName, lat: mLat, long: mLong, description: mDesc, site_type: mType};
+    var mLatLong = marker.getPosition();
+    var mLat = mLatLong.lat();
+    var mLng = mLatLong.lng();
+    var myData = {name: mName, lat: mLat, long: mLng, description: mDesc, site_type: mType};
 
     $.ajax({
       type: "POST",

@@ -113,11 +113,8 @@ div.marker-inner-win {
 }
 
 button.save-marker, button.remove-marker {
-    border: none;
-    background: rgba(0, 0, 0, 0);
     color: #00F;
     padding: 0px;
-    text-decoration: underline;
-    margin-right: 10px;
     cursor: pointer;
+    display: inline;
 }
