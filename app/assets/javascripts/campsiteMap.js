@@ -84,7 +84,6 @@ CampsiteMap.prototype = {
         } else {
           this.saveMarker(marker, mName, mDesc, mType, mReplace);
         }
-
       }.bind(this));
     }
 
@@ -95,15 +94,13 @@ CampsiteMap.prototype = {
     if (InfoOpenDefault) {
       infowindow.open(this.map, marker);
     }
-
     return marker;
   },
-  saveMarker: function saveMarker(marker, mName, mDesc, mType) {
+  saveMarker: function saveMarker(marker, mName, mDesc, mType, replaceWin) {
     var mLatLong = marker.getPosition();
     var mLat = mLatLong.lat();
     var mLng = mLatLong.lng();
     var myData = {name: mName, lat: mLat, long: mLng, description: mDesc, site_type: mType};
-
     $.ajax({
       type: "POST",
       url: '/api/sites',
@@ -111,6 +108,13 @@ CampsiteMap.prototype = {
       dataType: 'json',
       success: function (data) {
         marker.id = data.id;
+        replaceWin.html(
+          $('<div class="marker-info-win">' +
+            '<div class="marker-inner-win"><span class="info-content">' +
+            '<h1 class="marker-heading">' + data.name + '</h1>' + data.description +
+            '<br>'+
+            '</span>' + '</div></div>')
+        );
         alert('Campsite successfully added!')
       },
       error: function (xhr, ajaxOptions, thrownError) {
@@ -124,7 +128,7 @@ CampsiteMap.prototype = {
       type: "DELETE",
       url: "/api/sites/" + marker.id,
       success: function (data) {
-        alert('Campsite successfully removed.')
+        alert('Campsite successfully removed.');
         marker.setMap(null);
       },
       error: function (xhr, ajaxOptions, thrownError) {
