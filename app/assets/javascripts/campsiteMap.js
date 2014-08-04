@@ -51,7 +51,7 @@ CampsiteMap.prototype = {
     var marker = new google.maps.Marker({
       position: MapPos,
       map: this.map,
-      animation: google.maps.Animation.DROP,
+      animation: google.maps.Animation.DROP
     });
 
     var contentString = $('<div class="marker-info-win">' +
