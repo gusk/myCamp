@@ -24,7 +24,7 @@ CampsiteMap.prototype = {
         '</form>' +
         '</div></p><button name="save-marker" class="save-marker">Save Campsite</button>';
 
-      this.createMarker(event.latLng, 'New Campsite', EditForm, true, true, true);
+      this.createMarker(event.latLng, 'New Campsite', EditForm, true);
     }.bind(this));
 
     var weatherLayer = new google.maps.weather.WeatherLayer({
@@ -58,7 +58,7 @@ CampsiteMap.prototype = {
     var contentString = $('<div class="marker-info-win">' +
       '<div class="marker-inner-win"><span class="info-content">' +
       '<h1 class="marker-heading">' + CampTitle + '</h1>' + CampDesc +
-      '<br>'+
+      '<br>' +
       '</span><button name="remove-marker" class="remove-marker" title="Remove Marker">Remove Campsite</button>' + '</div></div>');
 
     var infowindow = new google.maps.InfoWindow();
@@ -82,7 +82,7 @@ CampsiteMap.prototype = {
         if (mName == '' || mDesc == '') {
           alert("Please enter name and description.");
         } else {
-          this.saveMarker(marker, mName, mDesc, mType, mReplace);
+          this.saveMarker(marker, mName, mDesc, mType, infowindow);
         }
       }.bind(this));
     }
@@ -96,7 +96,7 @@ CampsiteMap.prototype = {
     }
     return marker;
   },
-  saveMarker: function saveMarker(marker, mName, mDesc, mType, replaceWin) {
+  saveMarker: function saveMarker(marker, mName, mDesc, mType, infoWindow) {
     var mLatLong = marker.getPosition();
     var mLat = mLatLong.lat();
     var mLng = mLatLong.lng();
@@ -108,15 +108,27 @@ CampsiteMap.prototype = {
       dataType: 'json',
       success: function (data) {
         marker.id = data.id;
-        replaceWin.html(
-          $('<div class="marker-info-win">' +
-            '<div class="marker-inner-win"><span class="info-content">' +
-            '<h1 class="marker-heading">' + data.name + '</h1>' + data.description +
-            '<br>'+
-            '</span>' + '</div></div>')
-        );
-        alert('Campsite successfully added!')
-      },
+
+        var newInfoWindow = new google.maps.InfoWindow();
+
+        var content = $('<div class="marker-info-win">' +
+          '<div class="marker-inner-win"><span class="info-content">' +
+          '<h1 class="marker-heading">' + data.name + '</h1>' + data.description +
+          '<br>' +
+          '</span><button name="remove-marker" class="remove-marker" title="Remove Marker">Remove Campsite</button>' + '</div></div>');
+
+
+        newInfoWindow.setContent(content[0]);
+        infoWindow.close();
+        infoWindow = null;
+        alert('Campsite successfully added!');
+
+        newInfoWindow.open(this.map, marker);
+        if (InfoOpenDefault) {
+          newInfoWindow.open(this.map, marker);
+        }
+        return marker;
+      }.bind(this),
       error: function (xhr, ajaxOptions, thrownError) {
         alert(thrownError);
       }
