@@ -52,7 +52,6 @@ CampsiteMap.prototype = {
       position: MapPos,
       map: this.map,
       animation: google.maps.Animation.DROP,
-      title: 'Campsite name'
     });
 
     var contentString = $('<div class="marker-info-win">' +
@@ -124,9 +123,13 @@ CampsiteMap.prototype = {
         alert('Campsite successfully added!');
 
         newInfoWindow.open(this.map, marker);
-        if (InfoOpenDefault) {
-          newInfoWindow.open(this.map, marker);
-        }
+
+        var removeBtn = content.find('button.remove-marker')[0];
+
+        google.maps.event.addDomListener(removeBtn, "click", function (event) {
+          this.removeMarker(marker)
+        }.bind(this));
+
         return marker;
       }.bind(this),
       error: function (xhr, ajaxOptions, thrownError) {
