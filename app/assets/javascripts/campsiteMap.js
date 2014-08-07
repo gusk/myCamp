@@ -10,16 +10,17 @@ CampsiteMap.prototype = {
       center: mapCenter,
       mapTypeId: google.maps.MapTypeId.HYBRID,
       draggableCursor: 'crosshair'
-
     };
+
     this.map = new google.maps.Map(document.getElementById(this.domId), mapOptions);
 
     google.maps.event.addListener(this.map, 'click', function (event) {
       var EditForm = '<p><div class="marker-edit">' +
         '<form action="/api/sites/create" method="POST" name="SaveMarker" id="SaveMarker">' +
-        '<label for="pName"><span>Campsite Name :</span><input type="text" name="pName" class="save-name" placeholder="Enter Name" maxlength="40" /></label>' +
-        '<label for="pDesc"><span>Description :</span><textarea name="pDesc" class="save-desc" placeholder="Enter Description" maxlength="150"></textarea></label>' +
-        '<label for="pType"><span>Type :</span> <select name="pType" class="save-type"><option value="dispersed">Dispersed</option><option value="camp ground">Camp Ground</option>' +
+        '<label for="pName"><span>Campsite Name:</span><input type="text" name="pName" class="save-name" placeholder="Enter Name" maxlength="40" /></label>' +
+        '<label for="pDesc"><span>Description:</span><textarea name="pDesc" class="save-desc" placeholder="Enter Description" maxlength="150"></textarea></label>' +
+        '<label for="pPrivate"><span>Private:</span><input type="checkbox" name="pPrivate" class=""/></label>' +
+        '<label for="pType"><span>Type:</span> <select name="pType" class="save-type"><option value="dispersed">Dispersed</option><option value="camp ground">Camp Ground</option>' +
         '</select></label>' +
         '</form>' +
         '</div></p><button name="save-marker" class="save-marker">Save Campsite</button>';

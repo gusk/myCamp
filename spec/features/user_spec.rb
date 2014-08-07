@@ -12,9 +12,8 @@ feature 'User' do
     within 'form' do
       click_on 'Login'
     end
-    expect(page).to have_content 'Welcome, Bob'
     expect(page).to have_content 'Logout'
-    expect(page).to have_no_content 'Login'
+    expect(page).to have_no_content 'Register'
   end
 
   scenario 'user cannot login with an unregistered email address' do
@@ -39,7 +38,6 @@ feature 'User' do
     within 'form' do
       click_on 'Login'
     end
-    expect(page).to have_content 'Welcome, Bob'
     click_link 'Logout'
     expect(page).to have_content 'You have successfully logged out.'
     expect(page).to have_no_content 'Logout'
