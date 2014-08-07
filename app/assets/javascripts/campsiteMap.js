@@ -6,7 +6,7 @@ CampsiteMap.prototype = {
   initialize: function () {
     var mapCenter = new google.maps.LatLng(39.7375670, -104.9847180);
     var mapOptions = {
-      zoom: 10,
+      zoom: 8,
       center: mapCenter,
       mapTypeId: google.maps.MapTypeId.HYBRID,
       draggableCursor: 'crosshair'
